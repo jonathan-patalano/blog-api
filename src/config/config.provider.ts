@@ -1,8 +1,8 @@
-import { ConfigService, configService } from './config.service';
+import { ConfigService, configService } from "./config.service";
 
 export const configProviders = [
   {
     provide: ConfigService,
-    useValue: configService,
-  },
+    useValue: configService
+  }
 ];

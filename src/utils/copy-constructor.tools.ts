@@ -1,4 +1,4 @@
-import { DeepPartial } from 'typeorm';
+import { DeepPartial } from "typeorm";
 
 /**
  * Used in copy constructors to get either a value from
@@ -26,7 +26,7 @@ export function getOrDefault<T>(source: T | undefined, defaultValue: T) {
  */
 export function getCopyConstruction<T extends object>(
   sourceClass: new (copy: T) => T,
-  source: T | Partial<T> | DeepPartial<T> | undefined,
+  source: T | Partial<T> | DeepPartial<T> | undefined
 ): T | undefined {
   return source === null || source === undefined
     ? undefined
@@ -45,7 +45,7 @@ export function getCopyConstruction<T extends object>(
  */
 export function getCopyConstructions<T extends object>(
   sourceClass: new (copy: T) => T,
-  sources: T[] | Array<Partial<T>> | Array<DeepPartial<T>> | undefined,
+  sources: T[] | Array<Partial<T>> | Array<DeepPartial<T>> | undefined
 ): T[] | undefined {
   return sources === null || sources === undefined
     ? undefined
