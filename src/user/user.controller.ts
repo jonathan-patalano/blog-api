@@ -13,4 +13,12 @@ export class UserController {
   async getById(@Param("id") id: string) {
     return this.userService.getById(id);
   }
+
+  @Get(":id")
+  @ApiOperation({
+    title: "UpdateById"
+  })
+  async updateById(@Param("id") id: string) {
+    return this.userService.updateById(id);
+  }
 }

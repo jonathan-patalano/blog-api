@@ -22,4 +22,23 @@ describe("UserService", () => {
       expect(repository.findOne).toHaveBeenCalledWith(id);
     });
   });
+
+  describe("updateById", () => {
+    it("should call and return repository.update", async () => {
+      const id = "monId";
+      const user = {
+        firstName: "Juliette",
+        password: "Tfd15$"
+      };
+      const updatedUser = {
+        firstName: "jonathan",
+        password: "Tfd15$"
+      };
+      repository.findOne = jest.fn().mockResolvedValue(user);
+      repository.save = jest.fn().mockResolvedValue(updatedUser);
+      const result = await service.updateById(id);
+      expect(result).toBe(updatedUser);
+      expect(repository.save).toHaveBeenLastCalledWith(user);
+    });
+  });
 });

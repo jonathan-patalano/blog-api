@@ -16,4 +16,17 @@ export class UserService {
   async getById(id: string) {
     return this.userRepository.findOne(id);
   }
+
+  /**
+   * Update a user identified by its id
+   *
+   * @param id - user id
+   * @returns Resolves with User
+   */
+  async updateById(id: string) {
+    const user = await this.userRepository.findOne(id);
+    // to do modification on user
+    const updatedUser = user;
+    return this.userRepository.save(updatedUser);
+  }
 }
