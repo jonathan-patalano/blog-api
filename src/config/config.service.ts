@@ -8,7 +8,10 @@ type EnvType =
   | "DB_HOST"
   | "DB_USER"
   | "DB_PWD"
-  | "PORT";
+  | "PORT"
+  | "SECRET_KEY"
+  | "DEFAULT_EXPIRATION"
+  | "AUTH_ALGORITHME";
 
 @Injectable()
 export class ConfigService {
