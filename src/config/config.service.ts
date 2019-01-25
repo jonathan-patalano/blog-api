@@ -11,7 +11,9 @@ type EnvType =
   | "PORT"
   | "SECRET_KEY"
   | "DEFAULT_EXPIRATION"
-  | "AUTH_ALGORITHME";
+  | "AUTH_ALGORITHME"
+  | "JWT_SECRET"
+  | "JWT_EXPIRES_IN";
 
 @Injectable()
 export class ConfigService {

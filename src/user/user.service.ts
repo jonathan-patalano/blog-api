@@ -1,4 +1,5 @@
 import { Inject, Injectable } from "@nestjs/common";
+import { ISignUp } from "src/auth/auth.service";
 import { User } from "./entity/user.entity";
 import { UserRepository } from "./user.repository";
 
@@ -14,7 +15,7 @@ export class UserService {
    * @param user - user
    * @returns Created user
    */
-  async create(user: User): Promise<User> {
+  async create(user: ISignUp): Promise<User> {
     return this.userRepository.save(user);
   }
 

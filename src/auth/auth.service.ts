@@ -3,6 +3,8 @@ import { JwtService } from "@nestjs/jwt";
 import bcrypt from "bcrypt";
 import { User } from "../user/entity/user.entity";
 import { UserService } from "../user/user.service";
+import { ITokenPayloadUnsigned } from "./interface/token-payload-unsigned.interface";
+import { ITokenPayload } from "./interface/token-payload.interface";
 
 export interface ISignIn {
   email: string;
@@ -10,24 +12,15 @@ export interface ISignIn {
 }
 
 export interface ISignUp {
-  avatar: string;
-  created: Date;
+  avatar?: string;
+  created?: Date;
   email: string;
   firstName: string;
   lastName: string;
   password: string;
-  type: Enumerator;
-  updated: Date;
-  userId: string;
-}
-
-export interface ITokenPayloadUnsigned {
-  uid: string; // user id
-}
-
-export interface ITokenPayload extends ITokenPayloadUnsigned {
-  exp: number; // inserted by jwt
-  iat: number; // inserted by jwt
+  type?: Enumerator<string>;
+  updated?: Date;
+  userId?: string;
 }
 
 @Injectable()
@@ -99,13 +92,9 @@ export class AuthService {
    */
 
   public async signUp(data: ISignUp): Promise<{ token: string }> {
-    const user = await this.userService.create({
-      ...data,
-
-      password: await AuthService.hashPassword(data.password)
-    });
-
-    return { token: this.createToken(user) };
+    data.password = await AuthService.hashPassword(data.password);
+    const createdUser = await this.userService.create(data);
+    return { token: this.createToken(createdUser) };
   }
 
   /**
