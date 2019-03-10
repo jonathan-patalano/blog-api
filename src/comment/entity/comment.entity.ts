@@ -2,10 +2,11 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  PrimaryGeneratedColumn,
 } from "typeorm";
 @Entity()
 export class Comment {
-  @Column({ type: "varchar", name: "commentaireId" })
+  @PrimaryGeneratedColumn("uuid", { name: "commentaireId" })
   commentaireId: string;
 
   @Column({ type: "varchar", name: "authorId" })
