@@ -26,7 +26,7 @@ export class User {
   password: string;
 
   @Column({ type: "varchar", name: "type" })
-  type: Enumerator<string>;
+  type: string;
 
   @UpdateDateColumn()
   updated: Date;
