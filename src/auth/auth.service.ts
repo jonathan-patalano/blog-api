@@ -12,13 +12,13 @@ export interface ISignIn {
 }
 
 export interface ISignUp {
-  avatar?: string;
+  avatar: string;
   created?: Date;
   email: string;
   firstName: string;
   lastName: string;
   password: string;
-  type?: Enumerator<string>;
+  type?: string;
   updated?: Date;
   userId?: string;
 }
