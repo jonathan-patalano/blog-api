@@ -10,6 +10,11 @@ export class SignUpDto {
   @IsString()
   @IsDefined()
   @ApiModelProperty()
+  avatar: string;
+
+  @IsString()
+  @IsDefined()
+  @ApiModelProperty()
   firstName: string;
 
   @IsString()
