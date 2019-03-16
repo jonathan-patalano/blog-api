@@ -16,9 +16,7 @@ describe("User Controller", () => {
       const id = "monId";
       const user = { name: "toto" };
       service.getById = jest.fn().mockResolvedValue(user);
-
       const result = await controller.getById(id);
-
       expect(result).toBe(user);
       expect(service.getById).toHaveBeenCalledWith(id);
     });

@@ -56,6 +56,7 @@ export class UserService {
    * @returns Resolves with User
    */
   async delete(id: string): Promise<boolean> {
+    
     const userDB = await this.userRepository.findOne({ where: { id } });
     if (userDB) {
       this.userRepository.remove([userDB]);
