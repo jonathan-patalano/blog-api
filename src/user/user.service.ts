@@ -7,7 +7,7 @@ import { UserRepository } from "./user.repository";
 export class UserService {
   constructor(
     @Inject(UserRepository) private readonly userRepository: UserRepository
-  ) {}
+  ) { }
 
   /**
    * Create user and save it.
@@ -40,15 +40,28 @@ export class UserService {
   }
 
   /**
-   * Update a user identified by its id
+  * Update information of a user
+  *
+  * @param user - user
+  * @returns Resolves with User
+  */
+  async update(user: ISignUp): Promise<User> {
+    return this.userRepository.save(user);
+  }
+
+  /**
+   * Delete a user
    *
    * @param id - user id
    * @returns Resolves with User
    */
-  async updateById(id: string): Promise<User> {
-    const user = await this.userRepository.findOne(id);
-    // to do modification on user
-    const updatedUser = user;
-    return this.userRepository.save(updatedUser);
+  async delete(id: string): Promise<boolean> {
+    const userDB = await this.userRepository.findOne({ where: { id } });
+    if (userDB) {
+      this.userRepository.remove([userDB]);
+      return true;
+    }
+    return false;
   }
+
 }
