@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from "@nestjs/common";
+import { Body, Controller, Get, Param, Post, Put, Delete } from "@nestjs/common";
 import { ApiOperation } from "@nestjs/swagger";
 import { UserService } from "./user.service";
 import { async } from "rxjs/internal/scheduler/async";
@@ -6,7 +6,7 @@ import { ISignUp } from "src/auth/auth.service";
 
 @Controller("user")
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  constructor(private readonly userService: UserService) { }
 
   @Get(":id")
   @ApiOperation({
@@ -16,20 +16,27 @@ export class UserController {
     return this.userService.getById(id);
   }
 
-  @Post()
+  @Post("create")
   @ApiOperation({
     title: "create"
   })
-  async create(@Body("user") user: ISignUp){
+  async create(@Body("user") user: ISignUp) {
     return this.userService.create(user);
   }
-  
 
-  @Get(":id")
+  @Put("update")
   @ApiOperation({
-    title: "UpdateById"
+    title: "update"
   })
-  async updateById(@Param("id") id: string) {
-    return this.userService.updateById(id);
+  async update(@Body() user: ISignUp) {
+    return this.userService.update(user);
+  }
+
+  @Delete("delete")
+  @ApiOperation({
+    title: "delete"
+  })
+  async delete(@Body("id") id: string) {
+    return this.userService.delete(id);
   }
 }
