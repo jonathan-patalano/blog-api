@@ -1,0 +1,29 @@
+import { ApiModelProperty } from "@nestjs/swagger";
+import { IsDefined, IsEmail, IsString } from "class-validator";
+
+export class SignUpDto {
+  @IsEmail()
+  @IsDefined()
+  @ApiModelProperty()
+  email: string;
+
+  @IsString()
+  @IsDefined()
+  @ApiModelProperty()
+  avatar: string;
+
+  @IsString()
+  @IsDefined()
+  @ApiModelProperty()
+  firstName: string;
+
+  @IsString()
+  @IsDefined()
+  @ApiModelProperty()
+  lastName: string;
+
+  @IsString()
+  @IsDefined()
+  @ApiModelProperty()
+  password: string;
+}

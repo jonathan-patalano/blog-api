@@ -12,6 +12,22 @@
       "restart": true,
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Test (Current File)",
+      "program": "${workspaceFolder}/node_modules/.bin/jest",
+      "args": [
+        "--silent=false",
+        "--config=${workspaceFolder}/jest.json",
+        "--runInBand",
+        "--forceExit",
+        "--testRegex=(/src|/scripts)/.*\\..*?test\\.(ts|js)",
+        "${file}"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen"
     }
   ]
 }
