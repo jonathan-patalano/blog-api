@@ -65,4 +65,14 @@ export class ArticleService {
     return false;
   }
 
+  /**
+    * Returns all articles 
+    *
+    * 
+    * @returns Resolves with Articles
+    */
+   async getAllArticle() {
+    return this.articleRepository.find();
+}
+
 }

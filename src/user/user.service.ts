@@ -2,6 +2,7 @@ import { Inject, Injectable } from "@nestjs/common";
 import { ISignUp } from "src/auth/auth.service";
 import { User } from "./entity/user.entity";
 import { UserRepository } from "./user.repository";
+import { async } from "rxjs/internal/scheduler/async";
 
 @Injectable()
 export class UserService {
@@ -65,4 +66,36 @@ export class UserService {
     return false;
   }
 
+  /**
+    * Vérifie si l'utilisateur est auhtor
+    *
+    * @param user - user id
+    * @returns Resolves with User
+    */
+  async isAuthor(id: string) {
+    const user = await this.getById(id);
+    if (user.type == 'Auhtor') {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+
+  /**
+      * Vérifie si l'utilisateur est admin
+      *
+      * @param user - user id
+      * @returns Resolves with User
+      */
+  async isAdmin(id: string) {
+    const user = await this.getById(id);
+    if (user.type == 'Admin') {
+      return true;
+    }
+    else {
+      return false;
+    }
+
+  }
 }

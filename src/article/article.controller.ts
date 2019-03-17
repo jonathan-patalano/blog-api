@@ -23,6 +23,14 @@ export class ArticleController {
     return this.articleService.getByAuthor(authorId);
   }
 
+  @Get()
+    @ApiOperation({
+        title: "GetAll"
+    })
+    async getAllArticle() {
+        return this.articleService.getAllArticle();
+    }
+
   @Post("create")
   @ApiOperation({
     title: "create"
