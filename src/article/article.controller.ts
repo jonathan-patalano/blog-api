@@ -43,7 +43,7 @@ export class ArticleController {
   @ApiOperation({
     title: "delete"
   })
-  async delete(@Body("id") id: string) {
-    return this.articleService.delete(id);
+  async delete(@Body("articleId") articleId: string) {
+    return this.articleService.delete(articleId);
   }
 }
